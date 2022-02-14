@@ -3,6 +3,7 @@
 
 #include <stdio.h>
 #include <string.h>
+#include <cmath>
 
 #include <GL/glew.h>
 #include <GLFW/glfw3.h>
@@ -10,7 +11,13 @@
 // Window dimensions
 const GLint WIDTH = 800, HEIGHT = 600;
 
-GLuint VAO, VBO, shader;
+GLuint VAO, VBO, shader, uniformXMove;
+
+/* true = right, false = left */
+bool direction = true;
+float triOffset = 0.0f;
+float triIncrement = 0.0005f; /* increment 0.0005 until reach 0.7, then moves the opposite way reducing its value*/
+float triMaxOffset = 0.7f; /* max value of movement, when reach 0.7 starts moving the opposite direction */
 
 // Vertex Shader
 static const char* vShader = R"(
@@ -18,9 +25,11 @@ static const char* vShader = R"(
 
 layout (location = 0) in vec3 pos;
 
+uniform float xMove;
+
 void main()
 {
-    gl_Position = vec4(0.4 * pos.x, 0.4 * pos.y, pos.z, 1.0);
+    gl_Position = vec4(0.4 * pos.x + xMove, 0.4 * pos.y, pos.z, 1.0);
 }
 )";
 
@@ -125,6 +134,8 @@ void CompileShaders()
 		printf("Error validating program:  '%s'\n", eLog);
 		return;
 	}
+
+    uniformXMove = glGetUniformLocation(shader, "xMove");
 }
 
 int main()
@@ -190,6 +201,20 @@ int main()
         // Get + Handle user input events (mouse or keyboard inputs)
         glfwPollEvents();
 
+        if (direction)
+        {
+            triOffset += triIncrement;
+        }
+        else
+        {
+            triOffset -= triIncrement;
+        }
+
+        if (abs(triOffset) >= triMaxOffset)
+        {
+            direction = !direction; /* invert the boolean */
+        }
+
         // Clear window
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
         glClear(GL_COLOR_BUFFER_BIT);
@@ -197,6 +222,7 @@ int main()
         // grab and use the ID we creating, drawing the image.
         glUseProgram(shader);
 
+        glUniform1f(uniformXMove, triOffset);
 
         glBindVertexArray(VAO);
         glDrawArrays(GL_TRIANGLES, 0, 3);
