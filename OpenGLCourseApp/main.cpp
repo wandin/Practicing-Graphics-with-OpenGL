@@ -16,6 +16,7 @@
 #include "Window.h"
 #include "Mesh.h"
 #include "Shader.h"
+#include "Camera.h"
 
 /* convert radians to degrees*/
 const float toRadians = 3.14159265f / 180.0f;
@@ -25,6 +26,12 @@ Window mainWindow;
 // creating vectors
 std::vector<Mesh*> meshList;
 std::vector<Shader> shaderList;
+
+/* creating camera*/
+Camera camera;
+
+GLfloat deltaTime = 0.0f;
+GLfloat lastTime = 0.0f;
 
 // Vertex Shader
 static const char* vShader = "Shaders/shader.vert";
@@ -74,14 +81,23 @@ int main()
     CreateObjects();
     CreateShaders();
 
-    GLuint uniformProjection = 0, uniformModel = 0;
+    camera = Camera(glm::vec3(0.0f, 0.0f, 0.0f), glm::vec3(0.0f, 1.0f, 0.0f), -90.0f, 0.0f, 5.0f, 1.0f);
+
+    GLuint uniformProjection = 0, uniformModel = 0, uniformView = 0;
     glm::mat4 projection = glm::perspective(45.0f, mainWindow.getBufferWidth() / mainWindow.getBufferHeight(), 0.1f, 100.0f);
 
     // Loop until window closed
     while (!mainWindow.getShouldClose())
     {
+        /* actual time to calculate delta time */
+        GLfloat now = glfwGetTime();
+        deltaTime = now - lastTime;
+        lastTime = now;
+
         // Get + Handle user input events (mouse or keyboard inputs)
         glfwPollEvents();
+        camera.keyControl(mainWindow.getKeys(), deltaTime);
+        camera.mouseControl(mainWindow.getXChange(), mainWindow.getYChange());
 
         // Clear window
         glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
@@ -91,6 +107,7 @@ int main()
         shaderList[0].UseShader();
         uniformModel = shaderList[0].GetModelLocation();
         uniformProjection = shaderList[0].GetProjectionLocation();
+        uniformView = shaderList[0].GetViewLocation();
 
         // create  FIRST OBJECT
         glm::mat4 model(1.0f); 
@@ -99,6 +116,9 @@ int main()
         model = glm::scale(model, glm::vec3(0.4f, 0.4f, 1.0f));
         glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
         glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projection));
+
+        /* Matrix for the camera, using the calculateViewMatrix function.*/
+        glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(camera.calculateViewMatrix()));
         meshList[0]->RenderMesh();
 
         // create  SECOND OBJECT
