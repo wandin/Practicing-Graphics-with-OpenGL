@@ -9,7 +9,7 @@ class Texture
 
 public:
 	Texture();
-	Texture(const char* fileLoc);
+	Texture(char* fileLoc);
 
 	void LoadTexture();
 	void UseTexture();

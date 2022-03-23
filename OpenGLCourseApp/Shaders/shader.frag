@@ -10,5 +10,5 @@ uniform sampler2D theTexture;
        
 void main()        
 {
-    colour = vCol;                              
+    colour = texture(theTexture, TexCoord);
 }

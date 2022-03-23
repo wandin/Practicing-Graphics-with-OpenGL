@@ -9,13 +9,13 @@ Texture::Texture()
 	fileLocation = "";
 }
 
-Texture::Texture(const char* fileLoc)
+Texture::Texture(char* fileLoc)
 {
 	textureID = 0;
 	width = 0;
 	height = 0;
 	bitDepth = 0;
-	fileLocation = "fileLoc";
+	fileLocation = fileLoc;
 }
 
 void Texture::LoadTexture()
