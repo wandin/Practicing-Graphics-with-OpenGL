@@ -1,0 +1,3 @@
+﻿  main.cpp
+D:\Projetos\OpenGLCourseApp\OpenGLCourseApp\main.cpp(200,15): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+  OpenGLCourseApp.vcxproj -> D:\Projetos\OpenGLCourseApp\Debug\OpenGLCourseApp.exe
