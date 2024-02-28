@@ -43,6 +43,13 @@ void Camera::keyControl(bool* keys, GLfloat deltaTime)
 
 void Camera::mouseControl(GLfloat xChange, GLfloat yChange)
 {
+	// this check avoids the camera of applying weirdly high values to pitch or yaw at first movement
+	if (xChange > 50 || yChange > 50)
+	{
+		xChange = 0;
+		yChange = 0;
+	}
+
 	xChange *= turnSpeed;
 	yChange *= turnSpeed;
 

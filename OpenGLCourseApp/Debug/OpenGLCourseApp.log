@@ -1,3 +1,7 @@
 ﻿  main.cpp
-D:\Projetos\OpenGLCourseApp\OpenGLCourseApp\main.cpp(200,15): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
-  OpenGLCourseApp.vcxproj -> D:\Projetos\OpenGLCourseApp\Debug\OpenGLCourseApp.exe
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\main.cpp(205,15): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
+main.obj : error LNK2019: unresolved external symbol "public: __thiscall Assimp::Importer::Importer(void)" (??0Importer@Assimp@@QAE@XZ) referenced in function _main
+main.obj : error LNK2019: unresolved external symbol "public: __thiscall Assimp::Importer::~Importer(void)" (??1Importer@Assimp@@QAE@XZ) referenced in function _main
+D:\Projetos\OpenGL_C++_Course\\.\External_Libraries\ASSIMP\lib\assimp-vc143-mt.lib : warning LNK4272: library machine type 'x64' conflicts with target machine type 'x86'
+D:\Projetos\OpenGL_C++_Course\Debug\OpenGLCourseApp.exe : fatal error LNK1120: 2 unresolved externals

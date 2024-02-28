@@ -1,0 +1,102 @@
+﻿  Camera.cpp
+  DirectionalLight.cpp
+  Light.cpp
+  main.cpp
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\main.cpp(79,24): warning C4267: 'initializing': conversion from 'size_t' to 'unsigned int', possible loss of data
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\main.cpp(205,15): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+  Material.cpp
+  Mesh.cpp
+  PointLight.cpp
+  Shader.cpp
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(102,38): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(102,38): message : consider using '%zd' in the format string
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(105,38): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(105,38): message : consider using '%zd' in the format string
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(108,38): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(108,38): message : consider using '%zd' in the format string
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(111,38): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(111,38): message : consider using '%zd' in the format string
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(114,38): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(114,38): message : consider using '%zd' in the format string
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(117,38): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(117,38): message : consider using '%zd' in the format string
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(120,38): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(120,38): message : consider using '%zd' in the format string
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(130,38): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(130,38): message : consider using '%zd' in the format string
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(133,38): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(133,38): message : consider using '%zd' in the format string
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(136,38): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(136,38): message : consider using '%zd' in the format string
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(139,38): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(139,38): message : consider using '%zd' in the format string
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(142,38): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(142,38): message : consider using '%zd' in the format string
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(145,38): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(145,38): message : consider using '%zd' in the format string
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(148,38): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(148,38): message : consider using '%zd' in the format string
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(151,38): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(151,38): message : consider using '%zd' in the format string
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(154,38): warning C4477: 'snprintf' : format string '%d' requires an argument of type 'int', but variadic argument 1 has type 'size_t'
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(154,38): message : consider using '%zd' in the format string
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Shader.cpp(268,24): warning C4267: '=': conversion from 'size_t' to 'GLint', possible loss of data
+  SpotLight.cpp
+  Texture.cpp
+  Window.cpp
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Window.cpp(136,22): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Window.cpp(137,22): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Window.cpp(141,28): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Window.cpp(142,40): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Window.cpp(144,21): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\Window.cpp(145,21): warning C4244: '=': conversion from 'double' to 'GLfloat', possible loss of data
+DirectionalLight.obj : error LNK2001: unresolved external symbol __imp___glewUniform1f
+DirectionalLight.obj : error LNK2001: unresolved external symbol __imp___glewUniform3f
+main.obj : error LNK2001: unresolved external symbol glfwSwapBuffers
+main.obj : error LNK2001: unresolved external symbol __imp___glewUseProgram
+main.obj : error LNK2001: unresolved external symbol glfwGetTime
+main.obj : error LNK2001: unresolved external symbol glfwPollEvents
+main.obj : error LNK2001: unresolved external symbol __imp___glewUniformMatrix4fv
+main.obj : error LNK2001: unresolved external symbol glfwWindowShouldClose
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewEnableVertexAttribArray
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewBindVertexArray
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewVertexAttribPointer
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewBindBuffer
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewDeleteVertexArrays
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewBufferData
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewGenVertexArrays
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewGenBuffers
+Mesh.obj : error LNK2001: unresolved external symbol __imp___glewDeleteBuffers
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderiv
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewCompileShader
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewCreateShader
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewCreateProgram
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewUniform1i
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewGetShaderInfoLog
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewValidateProgram
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewGetProgramiv
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewGetUniformLocation
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewAttachShader
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewDeleteProgram
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewShaderSource
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewGetProgramInfoLog
+Shader.obj : error LNK2001: unresolved external symbol __imp___glewLinkProgram
+Texture.obj : error LNK2001: unresolved external symbol __imp___glewActiveTexture
+Texture.obj : error LNK2001: unresolved external symbol __imp___glewGenerateMipmap
+Window.obj : error LNK2001: unresolved external symbol glfwGetWindowUserPointer
+Window.obj : error LNK2001: unresolved external symbol glfwGetFramebufferSize
+Window.obj : error LNK2001: unresolved external symbol __imp_glewGetErrorString
+Window.obj : error LNK2001: unresolved external symbol glfwTerminate
+Window.obj : error LNK2001: unresolved external symbol glfwInit
+Window.obj : error LNK2001: unresolved external symbol glfwSetKeyCallback
+Window.obj : error LNK2001: unresolved external symbol glfwSetWindowShouldClose
+Window.obj : error LNK2001: unresolved external symbol glfwCreateWindow
+Window.obj : error LNK2001: unresolved external symbol glfwWindowHint
+Window.obj : error LNK2001: unresolved external symbol glfwSetInputMode
+Window.obj : error LNK2001: unresolved external symbol glfwMakeContextCurrent
+Window.obj : error LNK2001: unresolved external symbol glfwSetWindowUserPointer
+Window.obj : error LNK2001: unresolved external symbol glfwDestroyWindow
+Window.obj : error LNK2001: unresolved external symbol __imp_glewExperimental
+Window.obj : error LNK2001: unresolved external symbol glfwSetCursorPosCallback
+Window.obj : error LNK2001: unresolved external symbol __imp_glewInit
+D:\Projetos\OpenGL_C++_Course\x64\Release\OpenGLCourseApp.exe : fatal error LNK1120: 49 unresolved externals
