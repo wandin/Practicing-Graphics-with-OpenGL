@@ -7,6 +7,10 @@
 
 #include <GL\glew.h>
 
+#include <glm\glm.hpp>
+#include <glm\gtc\matrix_transform.hpp>
+#include <glm\gtc\type_ptr.hpp>
+
 #include "CommonValues.h"
 
 #include "DirectionalLight.h"
@@ -37,6 +41,9 @@ public:
 	void SetDirectionalLight(DirectionalLight* dLight);
 	void SetPointLights(PointLight* pLight, unsigned int lightCount);
 	void SetSpotLights(SpotLight* sLight, unsigned int lightCount);
+	void SetTexture(GLuint textureUnit);
+	void SetDirectionalShadowMap(GLuint textureUnit);
+	void SetDirectionalLightTransform(glm::mat4* lTransform);
 
 	void UseShader();
 	void ClearShader();
@@ -44,58 +51,51 @@ public:
 	~Shader();
 
 private:
-
 	int pointLightCount;
 	int spotLightCount;
 
-	GLuint shaderID;
-	GLuint uniformProjection;
-	GLuint uniformModel;
-	GLuint uniformView;
-	GLuint uniformEyePosition;
-	GLuint uniformSpecularIntensity;
-	GLuint uniformShininess;
+	GLuint shaderID, uniformProjection, uniformModel, uniformView, uniformEyePosition,
+		uniformSpecularIntensity, uniformShininess,
+		uniformTexture, uniformDirectionalShadowMap,
+		uniformDirectionalLightTransform;
 
-
-	struct
-	{
+	struct {
 		GLuint uniformColour;
 		GLuint uniformAmbientIntensity;
 		GLuint uniformDiffuseIntensity;
+
 		GLuint uniformDirection;
-
-	} uniformDirectionLight;
-
+	} uniformDirectionalLight;
 
 	GLuint uniformPointLightCount;
-	struct
-	{
+
+	struct {
 		GLuint uniformColour;
 		GLuint uniformAmbientIntensity;
 		GLuint uniformDiffuseIntensity;
+
 		GLuint uniformPosition;
 		GLuint uniformConstant;
 		GLuint uniformLinear;
 		GLuint uniformExponent;
-
 	} uniformPointLight[MAX_POINT_LIGHTS];
 
 	GLuint uniformSpotLightCount;
-	struct
-	{
+
+	struct {
 		GLuint uniformColour;
 		GLuint uniformAmbientIntensity;
 		GLuint uniformDiffuseIntensity;
+
 		GLuint uniformPosition;
 		GLuint uniformConstant;
 		GLuint uniformLinear;
 		GLuint uniformExponent;
+
 		GLuint uniformDirection;
 		GLuint uniformEdge;
-
-	}uniformSpotLight[MAX_SPOT_LIGHTS];
+	} uniformSpotLight[MAX_SPOT_LIGHTS];
 
 	void CompileShader(const char* vertexCode, const char* fragmentCode);
 	void AddShader(GLuint theProgram, const char* shaderCode, GLenum shaderType);
 };
-

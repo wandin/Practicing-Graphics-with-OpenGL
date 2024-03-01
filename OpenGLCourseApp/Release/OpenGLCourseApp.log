@@ -1,7 +1,7 @@
 ﻿  main.cpp
-D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\main.cpp(217,15): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
+D:\Projetos\OpenGL_C++_Course\OpenGLCourseApp\main.cpp(346,15): warning C4244: 'initializing': conversion from 'double' to 'GLfloat', possible loss of data
   Generating code
-  2 of 778 functions ( 0.3%) were compiled, the rest were copied from previous compilation.
+  1 of 798 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
     7 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
