@@ -12,7 +12,7 @@ DirectionalLight::DirectionalLight(GLuint shadowWidth, GLuint shadowHeight,
 {
 	direction = glm::vec3(xDir, yDir, zDir);
 
-	lightProj = glm::ortho(-20.0f, 20.0f, -20.0f, 20.0f, 0.1f, 100.0f);
+	lightProj = glm::ortho(-60.0f, 60.0f, -60.0f, 60.0f, 0.1f, 100.0f);
 }
 
 void DirectionalLight::UseLight(GLfloat ambientIntensityLocation, GLfloat ambientColourLocation,
