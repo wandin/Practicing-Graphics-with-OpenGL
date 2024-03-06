@@ -42,5 +42,5 @@
 ## Skybox Implementation
 - Implemented a skybox to provide a visually appealing background and enhance the immersive experience.
 
-- ## Toggle flashlight
+## Toggle flashlight
 - Press R to toggle the flashLight. 
