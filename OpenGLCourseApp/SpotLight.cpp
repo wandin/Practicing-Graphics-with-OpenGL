@@ -7,6 +7,8 @@ SpotLight::SpotLight() : PointLight()
 	edge = 0.0f;
 	processedEdge = cosf(glm::radians(edge));
 
+	bIsOn = true;
+
 }
 
 SpotLight::SpotLight(GLuint shadowWidth, GLuint shadowHeight,
@@ -31,8 +33,17 @@ void SpotLight::UseLight(GLuint ambientIntensityLocation, GLuint ambientColourLo
 	glUniform3f(ambientColourLocation, colour.x, colour.y, colour.z);
 	glUniform3f(positionLocation, position.x, position.y, position.z);
 
-	glUniform1f(ambientIntensityLocation, ambientIntensity);
-	glUniform1f(diffuseIntensityLocation, diffuseIntensity);
+	if (bIsOn)
+	{
+		glUniform1f(ambientIntensityLocation, ambientIntensity);
+		glUniform1f(diffuseIntensityLocation, diffuseIntensity);
+	}
+	else
+	{
+		glUniform1f(ambientIntensityLocation, 0.0f);
+		glUniform1f(diffuseIntensityLocation, 0.0f);
+	}
+
 
 	glUniform1f(constantLocation, constant);
 	glUniform1f(linearLocation, linear);

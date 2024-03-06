@@ -27,6 +27,8 @@
 
 #include "Model.h"
 
+#include "SkyBox.h"
+
 const float toRadians = 3.14159265f / 180.0f;
 
 GLuint uniformProjection = 0, uniformModel = 0, uniformView = 0, uniformEyePosition = 0,
@@ -58,6 +60,8 @@ DirectionalLight mainLight;
 PointLight pointLights[MAX_POINT_LIGHTS];
 SpotLight spotLights[MAX_SPOT_LIGHTS];
 
+Skybox skyBox;
+
 unsigned int pointLightCount = 0;
 unsigned int spotLightCount = 0;
 
@@ -65,6 +69,7 @@ GLfloat deltaTime = 0.0f;
 GLfloat lastTime = 0.0f;
 
 GLfloat seaHawkAngle = 0.0f;
+GLfloat droneAngle = 0.0f;
 
 // Vertex Shader
 static const char* vShader = "Shaders/shader.vert";
@@ -178,7 +183,7 @@ void RenderScene()
 	// Floor
 	model = glm::mat4(1.0f);
 	model = glm::translate(model, glm::vec3(0.0f, -2.0f, 0.0f));
-	model = glm::scale(model, glm::vec3(3.0f, 3.0f, 3.0f));
+	model = glm::scale(model, glm::vec3(5.0f, 5.0f, 5.0f));
 	glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 	dirtTexture.UseTexture();
 	shinyMaterial.UseMaterial(uniformSpecularIntensity, uniformShininess);
@@ -194,17 +199,24 @@ void RenderScene()
 	// Seahawk
 	model = glm::mat4(1.0f);
 	model = glm::rotate(model, seaHawkAngle * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
-	model = glm::translate(model, glm::vec3(-20.0f, 1.0f, 0.0f));
 	model = glm::rotate(model, 10.0f * toRadians, glm::vec3(0.0f, 0.0f, 1.0f));
+	model = glm::translate(model, glm::vec3(-15.0f, 15.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(0.1f, 0.1f, 0.1f));
 	glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 	shinyMaterial.UseMaterial(uniformSpecularIntensity, uniformShininess);
 	seahawk.RenderModel();
 
 
+	droneAngle += 0.01f;
+	if (droneAngle > 360.f)
+	{
+		droneAngle -= 0.01f;
+	}
+
 	// drone
 	model = glm::mat4(1.0f);
-	model = glm::translate(model, glm::vec3(15.0f, 2.0f, 0.0f));
+	model = glm::rotate(model, seaHawkAngle * toRadians, glm::vec3(0.0f, 1.0f, 0.0f));
+	model = glm::translate(model, glm::vec3(15.0f, 15.0f, 0.0f));
 	model = glm::scale(model, glm::vec3(10.0f, 10.0f, 10.0f));
 	glUniformMatrix4fv(uniformModel, 1, GL_FALSE, glm::value_ptr(model));
 	shinyMaterial.UseMaterial(uniformSpecularIntensity, uniformShininess);
@@ -233,6 +245,8 @@ void DirectionalShadowMapPass(DirectionalLight* light)
 	uniformModel = directionalShadowShader.GetModelLocation();
 	directionalShadowShader.SetDirectionalLightTransform(&light->CalculateLightTransform());
 
+	directionalShadowShader.Validate();
+
 	RenderScene();
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
@@ -254,14 +268,26 @@ void OmniShadowMapPass(PointLight* light)
 	glUniform1f(uniformFarPlane, light->GetFarPlane());
 	omniShadowShader.SetLightMatrices(light->CalculateLightTransform());
 
+	omniShadowShader.Validate();
+
+
 	RenderScene();
 	glBindFramebuffer(GL_FRAMEBUFFER, 0);
 }
 
 void RenderPass(glm::mat4 viewMatrix, glm::mat4 projectionMatrix)
 {
-	shaderList[0].UseShader();
 
+	glViewport(0, 0, 1366, 768);
+
+	// Clear the window
+	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+
+	skyBox.DrawSkybox(viewMatrix, projectionMatrix);
+
+	shaderList[0].UseShader();
 
 	uniformModel = shaderList[0].GetModelLocation();
 	uniformProjection = shaderList[0].GetProjectionLocation();
@@ -271,29 +297,24 @@ void RenderPass(glm::mat4 viewMatrix, glm::mat4 projectionMatrix)
 	uniformShininess = shaderList[0].GetShininessLocation();
 
 
-	glViewport(0, 0, 1366 , 768 );
-
-	// Clear the window
-	glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-	glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
-
 	glUniformMatrix4fv(uniformProjection, 1, GL_FALSE, glm::value_ptr(projectionMatrix));
 	glUniformMatrix4fv(uniformView, 1, GL_FALSE, glm::value_ptr(viewMatrix));
 	glUniform3f(uniformEyePosition, camera.getCameraPosition().x, camera.getCameraPosition().y, camera.getCameraPosition().z);
 
 	shaderList[0].SetDirectionalLight(&mainLight);
-	shaderList[0].SetPointLights(pointLights, pointLightCount);
-	shaderList[0].SetSpotLights(spotLights, spotLightCount);
+	shaderList[0].SetPointLights(pointLights, pointLightCount, 3, 0);
+	shaderList[0].SetSpotLights(spotLights, spotLightCount, 3 + pointLightCount, pointLightCount);
 	shaderList[0].SetDirectionalLightTransform(&mainLight.CalculateLightTransform());
 
-	mainLight.getShadowMap()->Read(GL_TEXTURE1);
-	shaderList[0].SetTexture(0);
-	shaderList[0].SetDirectionalShadowMap(1);
+	mainLight.getShadowMap()->Read(GL_TEXTURE2);
+	shaderList[0].SetTexture(1);
+	shaderList[0].SetDirectionalShadowMap(2);
 
 	glm::vec3 lowerLight = camera.getCameraPosition();
 	lowerLight.y -= 0.40f;
-	//spotLights[0].SetFlash(lowerLight, camera.getCameraDiretion());
+	spotLights[0].SetFlash(lowerLight, camera.getCameraDiretion());
 
+	shaderList[0].Validate();
 	RenderScene();
 }
 
@@ -329,9 +350,9 @@ int main()
 
 
 	mainLight = DirectionalLight(2048, 2048 ,
-								1.0f, 1.0f, 1.0f,
+								1.f, 0.65f, .5f,
 								0.1f, 0.3f,
-								0.0f, -15.f, -15.0f);
+								0.0f, -15.f, -20.0f);
 
 	pointLights[0] = PointLight(1024, 1024,
 								0.01f, 100.0f,
@@ -371,6 +392,17 @@ int main()
 
 	spotLightCount++;
 
+
+	std::vector<std::string> skyboxFaces;
+	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_rt.tga");
+	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_lf.tga");
+	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_up.tga");
+	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_dn.tga");
+	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_bk.tga");
+	skyboxFaces.push_back("Textures/Skybox/cupertin-lake_ft.tga");
+
+	skyBox = Skybox(skyboxFaces);
+
 	glm::mat4 projection = glm::perspective(glm::radians(60.0f), (GLfloat)mainWindow.getBufferWidth() / mainWindow.getBufferHeight(), 0.1f, 100.0f);
 
 	// Loop until window closed
@@ -386,6 +418,14 @@ int main()
 		camera.keyControl(mainWindow.getsKeys(), deltaTime);
 		camera.mouseControl(mainWindow.getXChange(), mainWindow.getYChange());
 		
+
+		if (mainWindow.getsKeys()[GLFW_KEY_R])
+		{
+			spotLights[0].Toggle();
+			mainWindow.getsKeys()[GLFW_KEY_R] = false;
+		}
+
+
 		DirectionalShadowMapPass(&mainLight);
 		
 		for (size_t i = 0; i < pointLightCount; i++)
